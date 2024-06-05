@@ -1,6 +1,6 @@
 import './App.css'
 import TextEditorComponent from "./Components/TextEditorComponent.jsx";
-import {useState} from "react";
+import {useState} from 'react';
 import CourseOverViewTextEditor from "./Components/CourseOverViewTextEditor.jsx";
 
 function App() {
@@ -22,24 +22,32 @@ function App() {
     setOverview(overViewData)
   }
 
-  const handleForm = () => {
+  const handleForm = (e) => {
+    e.preventDefault();
     console.log('data')
   }
 
   return (
     <>
       <form onSubmit={handleForm}>
-        <input onChange={(e) => setCourseName(e.target.value)} value={courseName} type="text" placeholder="Course Name" />
+        <input onChange={(e) => setCourseName(e.target.value)} value={courseName} type="text"
+               placeholder="Course Name"/>
         <br/>
-        <input onChange={(e) => setDuration(e.target.value)} value={duration} type="number" placeholder="Duration" />
+        <input
+          onChange={(e) => setDuration(parseInt(e.target.value))}
+          value={duration}
+          type="number"
+          placeholder="Duration"
+        />
         <br/>
-        <input value={lectures} onChange={(e) => setLectures(e.target.value)} type="number" placeholder="Lectures"/>
+        <input value={lectures} onChange={(e) => setLectures(parseInt(e.target.value))} type="number" placeholder="Lectures"/>
         <br/>
         <input value={language} onChange={(e) => setLanguage(e.target.value)} type="text" placeholder="Language"/>
         <br/>
-        <input value={skillLevel} onChange={(e) => setSkillLevel(e.target.value)} type="text" placeholder="Skill Level"/>
+        <input value={skillLevel} onChange={(e) => setSkillLevel(e.target.value)} type="text"
+               placeholder="Skill Level"/>
         <br/>
-        <input value={quizzes} onChange={(e) => setQuizzes(e.target.value)} type="number" placeholder="Quizzes"/>
+        <input value={quizzes} onChange={(e) => setQuizzes(parseInt(e.target.value))} type="number" placeholder="Quizzes"/>
         <br/>
         <input value={access} onChange={(e) => setAccess(e.target.value)} type="text" placeholder="Access"/>
         <br/>
@@ -50,7 +58,7 @@ function App() {
         <TextEditorComponent data={content} setData={handleEditorData}/>
         <br/>
         <br/>
-        <button value="submit"> Submit </button>
+        <button type="submit">Submit</button>
       </form>
     </>
   )
