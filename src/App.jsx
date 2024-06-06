@@ -6,7 +6,7 @@ import CourseOverViewTextEditor from "./Components/CourseOverViewTextEditor.jsx"
 function App() {
   const [content, setContent] = useState('');
   const [courseName, setCourseName] = useState('');
-  const [overview, setOverview] = useState("")
+  const [courseOverview, setCourseOverview] = useState("")
   const [duration, setDuration] = useState(0);
   const [lectures, setLectures] = useState(0);
   const [language, setLanguage] = useState("");
@@ -30,14 +30,43 @@ function App() {
   }
 
   const handleCourseOverViewChange = (overViewData) => {
-    setOverview(overViewData)
+    setCourseOverview(overViewData)
   }
 
   const handleForm = async (e) => {
     e.preventDefault();
-    console.log(generateUUID())
+    console.log(courseCategory)
+    console.log({
+      course_uuid: generateUUID(),
+      course_name: courseName,
+      course_overview: courseOverview,
+      language: language,
+      course_duration: duration,
+      lectures: lectures,
+      quizzes: quizzes,
+      skill_level: skillLevel,
+      access: access,
+      course_description: content,
+    })
 
-    // await fetch(`http://localhost:8000/`)
+    // const response = await fetch(`http://localhost:8000/api/v1/courses/${courseCategory}/`, {
+    //   method: 'POST',
+    //   'Content-Type': 'application/json',
+    //   body: JSON.stringify({
+    //     course_uuid: generateUUID(),
+    //     course_name: courseName,
+    //     course_overview: courseOverview,
+    //     language: language,
+    //     course_duration: duration,
+    //     lectures: lectures,
+    //     quizzes: quizzes,
+    //     skill_level: skillLevel,
+    //     access: access,
+    //     course_description: content,
+    //   })
+    // })
+    // const data = await response.json();
+    // console.log(data)
 
   }
 
@@ -92,7 +121,7 @@ function App() {
         <br/>
         <br/>
         <label htmlFor="courseSelect">Overview </label>
-        <CourseOverViewTextEditor data={overview} handleOverViewChange={handleCourseOverViewChange}/>
+        <CourseOverViewTextEditor data={courseOverview} handleOverViewChange={handleCourseOverViewChange}/>
         <br/>
         <br/>
         <label htmlFor="courseSelect">Course Description </label>
